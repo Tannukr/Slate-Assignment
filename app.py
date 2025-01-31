@@ -199,45 +199,6 @@ def update_student_achievement(achievement_id):
     }), 200
 
 
-# @app.route("/student_dashboard", methods=["GET"])
-# @jwt_required()
-# def student_dashboard():
-#     current_user = get_jwt_identity()
-#     user = User.query.get(current_user)
-    
-#     if not user:
-#         return jsonify({"error": "User not found"}), 404
-    
-#     if user.role not in ["Student", "Parent"]:
-#         return jsonify({"error": "Unauthorized. Only students and parents can access this dashboard"}), 403
-    
-#     if user.role == "Parent":
-#         if user.linked_student_id is None:
-#             return jsonify({"error": "No linked student found for this parent"}), 404
-#         student = User.query.get(user.linked_student_id)
-#         if not student:
-#             return jsonify({"error": f"Linked student with ID {user.linked_student_id} not found"}), 404
-#         student_name = student.name
-#         student_id = user.linked_student_id
-#     else:
-#         student_name = user.name
-#         student_id = user.id
-    
-#     achievements = StudentAchievement.query.filter_by(linked_student_id=student_id).all()
-    
-#     if not achievements:
-#         return jsonify({
-#             "student_name": student_name,
-#             "message": "No achievements found",
-#             "achievements": []
-#         }), 200
-    
-#     return jsonify({
-#         "student_name": student_name,
-#         "achievements": [achievement.achievement for achievement in achievements]
-#     }), 200
-
-
 @app.route("/student_dashboard", methods=["GET"])
 @jwt_required()
 def student_dashboard():
@@ -251,7 +212,6 @@ def student_dashboard():
         return jsonify({"error": "Unauthorized. Only students and parents can access this dashboard"}), 403
     
     if user.role == "Parent":
-        # Modified to find student by ID 12 (Tanu)
         student = User.query.filter_by(linked_student_id=user.linked_student_id, role="Student").first()
         if not student:
             return jsonify({"error": f"Student with linked ID {user.linked_student_id} not found"}), 404
