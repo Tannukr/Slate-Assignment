@@ -1,9 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import foreign
 
 db = SQLAlchemy()
-
-
 
 
 class User(db.Model):
