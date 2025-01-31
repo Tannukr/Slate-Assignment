@@ -119,38 +119,40 @@ def student_achievement():
     }), 201
 
 
-@app.route("/student-achievement/<int:linked_student_id>", methods=["GET"])
+
+@app.route("/student-achievements", methods=["GET"])
 @jwt_required()
-def get_student_achievement(linked_student_id):
+def get_student_achievements():
     current_user = get_jwt_identity()
     user = User.query.get(current_user)
     if not user:
         return jsonify({"error": "User not found"}), 404
-
     if user.role == "School":
-        student = User.query.filter_by(id=linked_student_id, role="Student").first()
-        if not student:
-            return jsonify({"error": "Student not found"}), 404
-        achievements = StudentAchievement.query.filter_by(linked_student_id=linked_student_id).all()
-        student_name = student.name
-    elif user.role in ["Parent", "Student"]:
-        achievements = StudentAchievement.query.filter_by(linked_student_id=user.linked_student_id).all()
-        student_name = user.name if user.role == "Student" else user.linked_student.name
+        students = User.query.filter_by(role="Student").all()
+    elif user.role == "Parent":
+        students = User.query.filter_by(linked_student_id=user.linked_student_id).all() 
+    elif user.role == "Student":
+        students = [user]
     else:
         return jsonify({"error": "Unauthorized"}), 403
+    results = []
+    for student in students:
+        achievements = StudentAchievement.query.filter_by(linked_student_id = student.id).all()
+        student_info = {
+            "linked_student_id": student.linked_student_id,
+            # "student_id": student.id,
+            "student_name": student.name,
+            "school_name": achievements[0].school_name if achievements else None,
+            "achievements": [achievement.achievement for achievement in achievements],
 
-    if not achievements:
-        return jsonify({
-            "student_name": student_name,
-            "message": "No achievements found",
-            "achievements": None
-        }), 200
+        }
+        results.append(student_info)
+    return jsonify(results), 200
 
-    return jsonify({
-        "student_name": student_name,
-        "school_name": achievements[0].school_name if achievements else None,
-        "achievements": [achievement.achievement for achievement in achievements]
-    }), 200
+
+
+
+
 
 
 @app.route("/student-achievement/<int:achievement_id>", methods=["DELETE"])
