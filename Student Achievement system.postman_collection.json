@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "3d988ba2-dffb-4090-8e42-b6e12967b42f",
+		"name": "Student Achievement system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41629367"
+	},
+	"item": [
+		{
+			"name": "register Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"palak\",\r\n  \"email\": \"palak@email.com\",\r\n  \"password\": \"1234\",\r\n  \"role\": \"Student\",\r\n  \"linked_student_id\": \"111\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register Parent",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "login parent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"palakp@email.com\",\r\n  \"password\": \"1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login school",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"school1@email.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "School dashboard",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczODM4OTI2MCwianRpIjoiMWNkYWYwMDUtMzRlZC00ODFlLWJiOTMtM2M2NmIyOTg5ZDdjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzM4Mzg5MjYwLCJjc3JmIjoiNDFhODI0MmEtMDJhOC00OTkyLWFkNzEtZjViOWYwMzdjYWJmIiwiZXhwIjoxNzM4MzkwMTYwfQ.zipsW4NmXgxXehHSJmKL2VtmZakS-ciAJ4eJzEeWwdM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/student-achievements",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"student-achievements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post student Achievement",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczODM4OTUwMiwianRpIjoiNjY1NGMxNTItYWRhNy00NDdjLTgxOGMtNzA0ZTVkNjVkNTM4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzM4Mzg5NTAyLCJjc3JmIjoiNmIwNzIzMmYtMWNjNC00OWFkLWJjZGEtOWRmMzdiMGQyNGJkIiwiZXhwIjoxNzM4MzkwNDAyfQ.vXL_Ycj84xwASCAuyRfD82B3qmZaOb7utmjYx6UAg9A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"linked_student_id\": \"111\",\r\n  \"achievements\": [\r\n    \"Won 1st place in Math Olympiad\",\r\n    \"Completed a coding bootcamp\"\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/student-achievement",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"student-achievement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student Achievement",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczODM4OTg3OSwianRpIjoiMTZlNGI3NzYtZDY1NS00MzY4LWIwODEtNWVlZDgzMGNjZTEwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzM4Mzg5ODc5LCJjc3JmIjoiYjhlM2E1OTItNTY2ZC00YTNkLWIyM2UtNzMwZDBlZTg0Y2UzIiwiZXhwIjoxNzM4MzkwNzc5fQ.zV9E_v6L19Sa6WHN15HIvCmOO-M8rdsGGIwTWZ-gP14",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"school1@email.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/student-achievements",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"student-achievements"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

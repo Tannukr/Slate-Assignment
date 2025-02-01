@@ -30,7 +30,8 @@ def register():
         student = User.query.filter_by(role="Student", linked_student_id=linked_student_id).first()
         if not student:
             return jsonify({"error": "Invalid linked Student ID"}), 404
-    
+    if email and User.query.filter_by(email=email).first():
+        return jsonify({"error": "Email already registered"}), 409
     if role == "Student":
         if not linked_student_id:
             return jsonify({"error": "Linked Student ID is required"}), 400
