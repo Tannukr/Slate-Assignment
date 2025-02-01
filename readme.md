@@ -1,6 +1,6 @@
-**Student Achievements API**
+Student Achievements API
 
-#This is a Flask-based REST API for managing student achievements. It supports user authentication, role-based access control, and CRUD operations on student achievements.#
+This is a Flask-based REST API for managing student achievements. It supports user authentication, role-based access control, and CRUD operations on student achievements.
 
 Setup Instructions
 
@@ -16,22 +16,22 @@ Git (to clone the repository)
 
 Installation
 
-1. Clone the repository
+Clone the repository
 
-git clone https://github.com/Tannukr/Student_achievement_System
+git clone https://github.com/Tannukr/Student_achievement_System.git
 cd student-achievements-api
 
-2. Create and activate a virtual environment
+Create and activate a virtual environment
 
 python -m venv env
 source env/bin/activate  # On macOS/Linux
-env\Scripts\activate     # On Windows
+env\Scripts\activate    # On Windows
 
-3. Install dependencies
+Install dependencies
 
 pip install -r requirements.txt
 
-4. Run the application
+Run the application
 
 python app.py
 
