@@ -1,1 +1,62 @@
-<h1>Student Achievement Management System API Documentation</h1> <h2>Authentication</h2> <p>All endpoints except /register and /login require a JWT token in the Authorization header.</p> <h2>Endpoints</h2> <h3>User Management</h3> <h4>1. Register User</h4> <ul> <li>Endpoint: /register</li> <li>Method: POST</li> <li>Body: <pre><code>{ "name": "John Doe", "email": "john@example.com", "password": "secure123", "role": "Student", "linked_student_id": 1 }</code></pre> </li> </ul> <h4>2. Login</h4> <ul> <li>Endpoint: /login</li> <li>Method: POST</li> <li>Body: <pre><code>{ "email": "john@example.com", "password": "secure123" }</code></pre> </li> </ul> <h3>Student Achievements</h3> <h4>3. Add Student Achievement</h4> <ul> <li>Endpoint: /student-achievement</li> <li>Method: POST</li> <li>Body: <pre><code>{ "linked_student_id": 2, "achievements": [ "Won first place in the Science Fair", "Achieved perfect attendance for the semester", "Selected as team captain for the school's debate team" ] }</code></pre> </li> </ul> <h4>4. Update Student Achievement</h4> <ul> <li>Endpoint: /student-achievement/{achievement_id}</li> <li>Method: PUT</li> <li>Body: <pre><code>{ "achievement": "Won first place in National Science Fair 2025" }</code></pre> </li> </ul> <h4>5. Delete Student Achievement</h4> <ul> <li>Endpoint: /student-achievement/{achievement_id}</li> <li>Method: DELETE</li> <li>Body: None</li> </ul> <h4>6. Get Student Achievement</h4> <ul> <li>Endpoint: /student-achievement/{linked_student_id}</li> <li>Method: GET</li> <li>Body: None</li> </ul> <h3>Dashboards</h3> <h4>7. Student Dashboard</h4> <ul> <li>Endpoint: /student_dashboard</li> <li>Method: GET</li> <li>Body: None</li> <li>Note: Requires JWT token</li> </ul> <h4>8. School Dashboard</h4> <ul> <li>Endpoint: /school_dashboard</li> <li>Method: GET</li> <li>Body: None</li> <li>Note: Requires JWT token</li> </ul> <p><strong>Note:</strong> Replace {achievement_id} and {linked_student_id} with actual IDs when making requests.</p>
+Student Achievements API
+
+This is a Flask-based REST API for managing student achievements. It supports user authentication, role-based access control, and CRUD operations on student achievements.
+
+Setup Instructions
+
+Prerequisites
+
+Python 3.8+
+
+SQLite (default database)
+
+Postman (for API testing)
+
+Git (to clone the repository)
+
+Installation
+
+Clone the repository
+
+git clone https://github.com/Tannukr/Student_achievement_System.git
+cd student-achievements-api
+
+Create and activate a virtual environment
+
+python -m venv env
+source env/bin/activate  # On macOS/Linux
+env\Scripts\activate    # On Windows
+
+Install dependencies
+
+pip install -r requirements.txt
+
+Run the application
+
+python app.py
+
+API Endpoints
+
+Authentication
+
+POST /register - Register a new user
+
+POST /login - Authenticate and receive an access token
+
+Student Achievements
+
+POST /student-achievement - Add student achievements (requires authentication)
+
+GET /student-achievements - Retrieve all student achievements
+
+PUT /student-achievement/<id> - Update a specific achievement (requires authentication)
+
+DELETE /student-achievement/<id> - Delete a specific achievement (requires authentication)
+
+Testing with Postman
+
+Import the provided Postman collection.
+
+Use the login API to obtain a JWT token.
+
+Add the token to your API requests in the Authorization header as Bearer <token>.
